@@ -1,23 +1,34 @@
-def binary_search_ascii():
-    return """Binary Search:
-[1, 3, 5, 7, 9]
-      ^
-Check mid, split left/right, repeat recursively."""
+# Searching Algorithms - Step by Step
 
-def linear_search_ascii():
-    return """Linear Search:
-Start -> [1] -> [3] -> [5] -> [7] -> [9] -> End
-Check one by one from left to right."""
+def linear_search_steps(arr, target):
+    steps = []
+    for i, val in enumerate(arr):
+        if val == target:
+            steps.append(f"Found {target} at index {i}")
+            return "\n".join(steps)
+        else:
+            steps.append(f"Checked index {i}: {val} ≠ {target}")
+    steps.append("Target not found")
+    return "\n".join(steps)
 
-def dijkstra_ascii():
-    return """Dijkstra's Algorithm:
-  --1-->   --3-->  
-  |                         ^
-  \\------4----------------/
-Tracks shortest distance from source to all nodes."""
 
-def astar_ascii():
-    return """A* Search:
-Evaluates f(n) = g(n) + h(n)
-where g(n) is cost so far, h(n) is estimated cost.
-Used in pathfinding with heuristics."""
+def binary_search_steps(arr, target):
+    steps = []
+    arr_copy = sorted(arr)
+    left, right = 0, len(arr_copy) - 1
+
+    while left <= right:
+        mid = (left + right) // 2
+        steps.append(f"Middle index {mid}, value {arr_copy[mid]}")
+        if arr_copy[mid] == target:
+            steps.append(f"Found {target} at index {mid}")
+            return "\n".join(steps)
+        elif arr_copy[mid] < target:
+            steps.append(f"{target} > {arr_copy[mid]} → Search right half")
+            left = mid + 1
+        else:
+            steps.append(f"{target} < {arr_copy[mid]} → Search left half")
+            right = mid - 1
+
+    steps.append("Target not found")
+    return "\n".join(steps)
