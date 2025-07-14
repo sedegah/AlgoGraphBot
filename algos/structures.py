@@ -1,34 +1,64 @@
 def bfs_ascii():
-    return (
-        \"Graph:\\nA — B — C\\n|        |\\nD —— E\\n\\nTraversal: A → B → D → C → E\"
-    )
+    return """Breadth-First Search:
+Start -> [A]
+         |\\
+        [B][C]
+         |\\
+        [D][E]
+Traverse level by level."""
 
 def dfs_ascii():
-    return (
-        \"Graph:\\nA — B — C\\n|        |\\nD —— E\\n\\nTraversal: A → D → E → C → B\"
-    )
+    return """Depth-First Search:
+Start -> [A]
+          |
+         [B]
+          |
+         [D]
+Backtrack then -> [E] -> [C]
+Explore as deep as possible first."""
 
 def tree_ascii():
-    return (
-        \"    A\\n   / \\\\n  B   C\\n / \\    \\\\nD   E    F\"
-    )
+    return """Binary Tree:
+       [10]
+      /    \\
+    [5]    [15]
+   /  \\
+ [2]  [7]"""
 
 def graph_ascii():
-    return (
-        \"Graph (adjacency):\\nA: B, D\\nB: A, C\\nC: B, E\\nD: A, E\\nE: C, D\"
-    )
+    return """Graph:
+[A] -- [B] -- [C]
+ |      |
+[D] -- [E]
+Arbitrary connections between nodes."""
 
 def hashtable_ascii():
-    return (
-        \"Hashtable:\\nIndex 0: —\\nIndex 1: apple\\nIndex 2: banana\\nIndex 3: —\\nIndex 4: cat\\nCollision handled by chaining\"
-    )
+    return """Hash Table:
++----+--------+
+|  0 |   None |
+|  1 |   15   |
+|  2 |   7    |
++----+--------+
+Key-value storage with fast lookup."""
 
 def stack_ascii():
-    return (
-        \"Stack:\\nTop → [9, 7, 3]\\nPush(5) → [5, 9, 7, 3]\\nPop() → 5\\nNow → [9, 7, 3]\"
-    )
+    return """Stack (LIFO):
+|   5   |
+|   4   |
+|   3   |
+ -------
+Push and pop from the top only."""
 
 def queue_ascii():
-    return (
-        \"Queue:\\nFront → [2, 4, 6]\\nEnqueue(8) → [2, 4, 6, 8]\\nDequeue() → 2\\nNow → [4, 6, 8]\"
-    )
+    return """Queue (FIFO):
+[3] -> [4] -> [5] ->
+First in, first out processing."""
+
+def avl_tree_ascii():
+    return """AVL Tree (Balanced BST):
+       [30]
+      /    \\
+    [20]   [40]
+   /          \\
+ [10]         [50]
+Auto-balances after insertions/deletions."""
