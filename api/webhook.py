@@ -5,15 +5,12 @@ from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, AIORateLimiter
 
 from algos.descriptions import (
-    bfs_description,
-    dfs_description,
-    stack_description,
-    queue_description,
-    tree_description,
-    graph_description,
-    hashtable_description
+    sorting_descriptions,
+    searching_descriptions,
+    recursion_descriptions,
+    structure_descriptions,
+    traversal_descriptions
 )
-
 
 from algos.sorting import *
 from algos.searching import *
