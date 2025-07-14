@@ -8,7 +8,7 @@ from algos.sorting import *
 from algos.searching import *
 from algos.recursion import *
 from algos.structures import *
-from algos.traversal import *  # ✅ Needed for bfs_steps, dfs_steps, etc.
+from algos.traversal import *  
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
