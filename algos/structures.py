@@ -1,64 +1,56 @@
-def bfs_ascii():
-    return """Breadth-First Search:
-Start -> [A]
-         |\\
-        [B][C]
-         |\\
-        [D][E]
-Traverse level by level."""
+def bfs_description():
+    return (
+        "BFS (Breadth-First Search):\n"
+        "- Start from a node\n"
+        "- Visit neighbors level by level\n"
+        "- Uses a queue\n"
+        "- Good for shortest path in unweighted graphs"
+    )
 
-def dfs_ascii():
-    return """Depth-First Search:
-Start -> [A]
-          |
-         [B]
-          |
-         [D]
-Backtrack then -> [E] -> [C]
-Explore as deep as possible first."""
+def dfs_description():
+    return (
+        "DFS (Depth-First Search):\n"
+        "- Start from a node\n"
+        "- Explore as far as possible along each branch\n"
+        "- Uses a stack (or recursion)\n"
+        "- Good for topological sort, cycle detection"
+    )
 
-def tree_ascii():
-    return """Binary Tree:
-       [10]
-      /    \\
-    [5]    [15]
-   /  \\
- [2]  [7]"""
+def stack_description():
+    return (
+        "Stack (LIFO):\n"
+        "- Push, Pop, Peek\n"
+        "- Think of a stack of plates\n"
+        "- Last in, first out"
+    )
 
-def graph_ascii():
-    return """Graph:
-[A] -- [B] -- [C]
- |      |
-[D] -- [E]
-Arbitrary connections between nodes."""
+def queue_description():
+    return (
+        "Queue (FIFO):\n"
+        "- Enqueue, Dequeue\n"
+        "- First in, first out"
+    )
 
-def hashtable_ascii():
-    return """Hash Table:
-+----+--------+
-|  0 |   None |
-|  1 |   15   |
-|  2 |   7    |
-+----+--------+
-Key-value storage with fast lookup."""
+def tree_description():
+    return (
+        "Tree:\n"
+        "- Hierarchical structure\n"
+        "- Root, branches, leaves\n"
+        "- Binary Tree, BST, AVL, etc."
+    )
 
-def stack_ascii():
-    return """Stack (LIFO):
-|   5   |
-|   4   |
-|   3   |
- -------
-Push and pop from the top only."""
+def graph_description():
+    return (
+        "Graph:\n"
+        "- Set of nodes (vertices) connected by edges\n"
+        "- Can be directed/undirected\n"
+        "- Represented using adjacency list or matrix"
+    )
 
-def queue_ascii():
-    return """Queue (FIFO):
-[3] -> [4] -> [5] ->
-First in, first out processing."""
-
-def avl_tree_ascii():
-    return """AVL Tree (Balanced BST):
-       [30]
-      /    \\
-    [20]   [40]
-   /          \\
- [10]         [50]
-Auto-balances after insertions/deletions."""
+def hashtable_description():
+    return (
+        "Hash Table:\n"
+        "- Key-value pairs\n"
+        "- Fast lookup using hash function\n"
+        "- Common in dictionaries/maps"
+    )
