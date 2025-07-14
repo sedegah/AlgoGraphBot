@@ -23,7 +23,37 @@ async def respond(update: Update, text: str):
         await update.message.reply_text(text)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
-    await respond(update, "Welcome to AlgoGraphBot. Try /bubble, /quick, /dfs, /factorial, etc.")
+    await respond(update, """Welcome to AlgoGraphBot!
+
+I can walk you through popular algorithms with step-by-step explanations.
+
+Try one of these commands to begin:
+
+Sorting:
+  /bubble     - Bubble Sort
+  /insertion  - Insertion Sort
+  /selection  - Selection Sort
+  /quick      - Quick Sort
+
+Searching:
+  /linear     - Linear Search
+  /binary     - Binary Search
+
+Recursion:
+  /factorial  - Factorial Trace
+  /fibonacci  - Fibonacci Trace
+
+Data Structures:
+  /stack      - Stack
+  /queue      - Queue
+  /tree       - Tree
+  /graph      - Graph
+  /hashtable  - Hash Table
+
+Traversal:
+  /bfs        - Breadth-First Search
+  /dfs        - Depth-First Search
+""")
 
 tg_app.add_handler(CommandHandler("start", start))
 tg_app.add_handler(CommandHandler("bubble", lambda u, c: respond(u, bubble_sort_visualization([5, 2, 8, 1]))))
