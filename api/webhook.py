@@ -136,6 +136,11 @@ async def on_startup():
     await tg_app.bot.set_webhook(WEBHOOK_URL)
     await tg_app.start()
 
+@app.get("/")
+async def root():
+    return {"status": "GigaRandoBot is alive!"}
+
+
 @app.on_event("shutdown")
 async def on_shutdown():
     await tg_app.stop()
