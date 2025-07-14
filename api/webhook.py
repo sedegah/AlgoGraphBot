@@ -3,13 +3,15 @@ import logging
 from fastapi import FastAPI, Request
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, AIORateLimiter
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from algos.sorting import *
 from algos.searching import *
 from algos.recursion import *
 from algos.structures import *
 
-# Corrected environment variable usage
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
 
@@ -20,12 +22,12 @@ app = FastAPI()
 tg_app = Application.builder().token(BOT_TOKEN).rate_limiter(AIORateLimiter()).build()
 
 async def respond(update: Update, text: str):
-    await update.message.reply_text(text)
+    if update.message:
+        await update.message.reply_text(text)
 
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await respond(update, "Welcome to AlgoGraphBot. Try /bubble, /quick, /dfs, /factorial, etc.")
 
-# Command handlers
 tg_app.add_handler(CommandHandler("start", start))
 tg_app.add_handler(CommandHandler("bubble", lambda u, c: respond(u, bubble_sort_visualization([5, 2, 8, 1]))))
 tg_app.add_handler(CommandHandler("selection", lambda u, c: respond(u, selection_sort_visualization([4, 3, 1, 9]))))
