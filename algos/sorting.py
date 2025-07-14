@@ -1,66 +1,90 @@
-def bubble_sort_visualization(arr):
-    result = []
+def bubble_sort_steps(arr):
+    steps = []
     n = len(arr)
+    arr_copy = arr.copy()
+
     for i in range(n):
-        for j in range(0, n-i-1):
-            result.append(f"Comparing {arr[j]} and {arr[j+1]}")
-            if arr[j] > arr[j+1]:
-                result.append(f"Swapping {arr[j]} and {arr[j+1]}")
-                arr[j], arr[j+1] = arr[j+1], arr[j]
-            result.append(str(arr))
-    return '\n'.join(result)
+        for j in range(0, n - i - 1):
+            step_desc = f"Compare {arr_copy[j]} and {arr_copy[j + 1]}"
+            if arr_copy[j] > arr_copy[j + 1]:
+                arr_copy[j], arr_copy[j + 1] = arr_copy[j + 1], arr_copy[j]
+                step_desc += f" → Swap → {arr_copy}"
+            else:
+                step_desc += f" → No swap → {arr_copy}"
+            steps.append(step_desc)
 
-def selection_sort_visualization(arr):
-    result = []
-    for i in range(len(arr)):
-        min_idx = i
-        for j in range(i+1, len(arr)):
-            result.append(f"Comparing {arr[j]} and {arr[min_idx]}")
-            if arr[j] < arr[min_idx]:
-                min_idx = j
-        result.append(f"Swapping {arr[i]} and {arr[min_idx]}")
-        arr[i], arr[min_idx] = arr[min_idx], arr[i]
-        result.append(str(arr))
-    return '\n'.join(result)
+    steps.append(f"Sorted array: {arr_copy}")
+    return "\n".join(steps)
 
-def insertion_sort_visualization(arr):
-    result = []
-    for i in range(1, len(arr)):
-        key = arr[i]
-        j = i-1
-        result.append(f"Inserting {key}")
-        while j >= 0 and key < arr[j]:
-            result.append(f"Moving {arr[j]} to the right")
-            arr[j+1] = arr[j]
+
+def insertion_sort_steps(arr):
+    steps = []
+    arr_copy = arr.copy()
+
+    for i in range(1, len(arr_copy)):
+        key = arr_copy[i]
+        j = i - 1
+        steps.append(f"Insert {key} into the sorted part: {arr_copy[:i]}")
+
+        while j >= 0 and key < arr_copy[j]:
+            arr_copy[j + 1] = arr_copy[j]
             j -= 1
-            result.append(str(arr))
-        arr[j+1] = key
-        result.append(str(arr))
-    return '\n'.join(result)
+            steps.append(f"Move {arr_copy[j + 1]} right: {arr_copy}")
 
-def quick_sort_visualization(arr, depth=0):
-    if len(arr) <= 1:
-        return f"{'  '*depth}Returning {arr}"
+        arr_copy[j + 1] = key
+        steps.append(f"Insert {key} at position {j + 1}: {arr_copy}")
 
-    pivot = arr[0]
-    left = [x for x in arr[1:] if x < pivot]
-    right = [x for x in arr[1:] if x >= pivot]
+    steps.append(f"Sorted array: {arr_copy}")
+    return "\n".join(steps)
 
-    result = [f"{'  '*depth}Pivot {pivot} → Left: {left}, Right: {right}"]
-    result.append(quick_sort_visualization(left, depth+1))
-    result.append(quick_sort_visualization(right, depth+1))
-    return '\n'.join(result)
 
-def merge_sort_visualization(arr, depth=0):
-    indent = '  ' * depth
-    if len(arr) <= 1:
-        return f"{indent}Returning {arr}"
+def selection_sort_steps(arr):
+    steps = []
+    arr_copy = arr.copy()
+    n = len(arr_copy)
 
-    mid = len(arr) // 2
-    left = arr[:mid]
-    right = arr[mid:]
-    result = [f"{indent}Dividing {arr} -> {left} & {right}"]
-    result.append(merge_sort_visualization(left, depth+1))
-    result.append(merge_sort_visualization(right, depth+1))
-    result.append(f"{indent}Merging {left} & {right}")
-    return '\n'.join(result)
+    for i in range(n):
+        min_idx = i
+        for j in range(i + 1, n):
+            steps.append(f"Compare {arr_copy[j]} with current min {arr_copy[min_idx]}")
+            if arr_copy[j] < arr_copy[min_idx]:
+                min_idx = j
+        if min_idx != i:
+            arr_copy[i], arr_copy[min_idx] = arr_copy[min_idx], arr_copy[i]
+            steps.append(f"Swap {arr_copy[min_idx]} with {arr_copy[i]} → {arr_copy}")
+        else:
+            steps.append(f"No swap needed → {arr_copy}")
+
+    steps.append(f"Sorted array: {arr_copy}")
+    return "\n".join(steps)
+
+
+def quick_sort_steps(arr):
+    steps = []
+    arr_copy = arr.copy()
+
+    def quick_sort_recursive(arr, low, high):
+        if low < high:
+            pi = partition(arr, low, high)
+            steps.append(f"Partitioned at index {pi} → {arr}")
+            quick_sort_recursive(arr, low, pi - 1)
+            quick_sort_recursive(arr, pi + 1, high)
+
+    def partition(arr, low, high):
+        pivot = arr[high]
+        i = low - 1
+        steps.append(f"Using pivot {pivot}")
+
+        for j in range(low, high):
+            steps.append(f"Compare {arr[j]} with pivot {pivot}")
+            if arr[j] < pivot:
+                i += 1
+                arr[i], arr[j] = arr[j], arr[i]
+                steps.append(f"Swap → {arr}")
+        arr[i + 1], arr[high] = arr[high], arr[i + 1]
+        steps.append(f"Place pivot in position {i + 1} → {arr}")
+        return i + 1
+
+    quick_sort_recursive(arr_copy, 0, len(arr_copy) - 1)
+    steps.append(f"Sorted array: {arr_copy}")
+    return "\n".join(steps)
