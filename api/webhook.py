@@ -3,6 +3,8 @@ import logging
 from fastapi import FastAPI, Request
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, AIORateLimiter
+from algos.descriptions import sorting, searching, recursion, structures, traversal
+
 
 from algos.sorting import *
 from algos.searching import *
@@ -58,25 +60,50 @@ Traversal:
 
 # Command handlers
 tg_app.add_handler(CommandHandler("start", start))
-tg_app.add_handler(CommandHandler("bubble", lambda u, c: respond(u, bubble_sort_steps([5, 2, 8, 1]))))
-tg_app.add_handler(CommandHandler("selection", lambda u, c: respond(u, selection_sort_steps([4, 3, 1, 9]))))
-tg_app.add_handler(CommandHandler("insertion", lambda u, c: respond(u, insertion_sort_steps([9, 1, 5, 2]))))
-tg_app.add_handler(CommandHandler("quick", lambda u, c: respond(u, quick_sort_steps([5, 1, 3, 9]))))
+tg_app.add_handler(CommandHandler("bubble", lambda u, c: respond(
+    u, f"{sorting['bubble']}\n\n{bubble_sort_steps([5, 2, 8, 1])}")))
 
-tg_app.add_handler(CommandHandler("binary", lambda u, c: respond(u, binary_search_steps([1, 3, 5, 7, 9], 5))))
-tg_app.add_handler(CommandHandler("linear", lambda u, c: respond(u, linear_search_steps([3, 1, 4, 2], 4))))
+tg_app.add_handler(CommandHandler("insertion", lambda u, c: respond(
+    u, f"{sorting['insertion']}\n\n{insertion_sort_steps([9, 1, 5, 2])}")))
 
-tg_app.add_handler(CommandHandler("factorial", lambda u, c: respond(u, factorial_steps(4))))  
-tg_app.add_handler(CommandHandler("fibonacci", lambda u, c: respond(u, fibonacci_steps(5))))  
+tg_app.add_handler(CommandHandler("selection", lambda u, c: respond(
+    u, f"{sorting['selection']}\n\n{selection_sort_steps([4, 3, 1, 9])}")))
 
-tg_app.add_handler(CommandHandler("bfs", lambda u, c: respond(u, bfs_steps())))
-tg_app.add_handler(CommandHandler("dfs", lambda u, c: respond(u, dfs_steps())))
-tg_app.add_handler(CommandHandler("tree", lambda u, c: respond(u, tree_steps())))
-tg_app.add_handler(CommandHandler("graph", lambda u, c: respond(u, graph_steps())))
+tg_app.add_handler(CommandHandler("quick", lambda u, c: respond(
+    u, f"{sorting['quick']}\n\n{quick_sort_steps([5, 1, 3, 9])}")))
 
-tg_app.add_handler(CommandHandler("hashtable", lambda u, c: respond(u, hashtable_steps())))
-tg_app.add_handler(CommandHandler("stack", lambda u, c: respond(u, stack_steps())))
-tg_app.add_handler(CommandHandler("queue", lambda u, c: respond(u, queue_steps())))
+tg_app.add_handler(CommandHandler("linear", lambda u, c: respond(
+    u, f"{searching['linear']}\n\n{linear_search_steps([3, 1, 4, 2], 4)}")))
+
+tg_app.add_handler(CommandHandler("binary", lambda u, c: respond(
+    u, f"{searching['binary']}\n\n{binary_search_steps([1, 3, 5, 7, 9], 5)}")))
+
+tg_app.add_handler(CommandHandler("factorial", lambda u, c: respond(
+    u, f"{recursion['factorial']}\n\n{factorial_steps(4)}")))
+
+tg_app.add_handler(CommandHandler("fibonacci", lambda u, c: respond(
+    u, f"{recursion['fibonacci']}\n\n{fibonacci_steps(5)}")))
+
+tg_app.add_handler(CommandHandler("stack", lambda u, c: respond(
+    u, f"{structures['stack']}\n\n{stack_steps()}")))
+
+tg_app.add_handler(CommandHandler("queue", lambda u, c: respond(
+    u, f"{structures['queue']}\n\n{queue_steps()}")))
+
+tg_app.add_handler(CommandHandler("tree", lambda u, c: respond(
+    u, f"{structures['tree']}\n\n{tree_steps()}")))
+
+tg_app.add_handler(CommandHandler("graph", lambda u, c: respond(
+    u, f"{structures['graph']}\n\n{graph_steps()}")))
+
+tg_app.add_handler(CommandHandler("hashtable", lambda u, c: respond(
+    u, f"{structures['hashtable']}\n\n{hashtable_steps()}")))
+
+tg_app.add_handler(CommandHandler("bfs", lambda u, c: respond(
+    u, f"{traversal['bfs']}\n\n{bfs_steps()}")))
+
+tg_app.add_handler(CommandHandler("dfs", lambda u, c: respond(
+    u, f"{traversal['dfs']}\n\n{dfs_steps()}")))
 
 @app.post("/webhook")
 async def telegram_webhook(request: Request):
