@@ -1,5 +1,3 @@
-# Searching Algorithms - Step by Step
-
 def linear_search_steps(arr, target):
     steps = []
     for i, val in enumerate(arr):
