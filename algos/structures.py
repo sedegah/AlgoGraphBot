@@ -1,3 +1,5 @@
+# Simple structure explanations
+
 def bfs_description():
     return (
         "BFS (Breadth-First Search):\n"
