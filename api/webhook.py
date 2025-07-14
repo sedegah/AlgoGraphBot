@@ -40,7 +40,7 @@ tg_app.add_handler(CommandHandler("tree", lambda u, c: respond(u, tree_ascii()))
 tg_app.add_handler(CommandHandler("graph", lambda u, c: respond(u, graph_ascii())))
 tg_app.add_handler(CommandHandler("hashtable", lambda u, c: respond(u, hashtable_ascii())))
 tg_app.add_handler(CommandHandler("stack", lambda u, c: respond(u, stack_ascii())))
-tg_app.add_handler(CommandHandler("queue", lambda u, c: respond(u, queue_ascii()))
+tg_app.add_handler(CommandHandler("queue", lambda u, c: respond(u, queue_ascii())))
 
 @app.post("/webhook")
 async def telegram_webhook(request: Request):
