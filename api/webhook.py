@@ -3,7 +3,16 @@ import logging
 from fastapi import FastAPI, Request
 from telegram import Update
 from telegram.ext import Application, CommandHandler, ContextTypes, AIORateLimiter
-from algos.descriptions import sorting, searching, recursion, structures, traversal
+
+from algos.descriptions import (
+    bfs_description,
+    dfs_description,
+    stack_description,
+    queue_description,
+    tree_description,
+    graph_description,
+    hashtable_description
+)
 
 
 from algos.sorting import *
