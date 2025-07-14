@@ -8,6 +8,7 @@ from algos.sorting import *
 from algos.searching import *
 from algos.recursion import *
 from algos.structures import *
+from algos.traversal import *  # ✅ Needed for bfs_steps, dfs_steps, etc.
 
 BOT_TOKEN = os.getenv("BOT_TOKEN")
 WEBHOOK_URL = os.getenv("WEBHOOK_URL")
@@ -55,6 +56,7 @@ Traversal:
   /dfs        - Depth-First Search
 """)
 
+# Command handlers
 tg_app.add_handler(CommandHandler("start", start))
 tg_app.add_handler(CommandHandler("bubble", lambda u, c: respond(u, bubble_sort_steps([5, 2, 8, 1]))))
 tg_app.add_handler(CommandHandler("selection", lambda u, c: respond(u, selection_sort_steps([4, 3, 1, 9]))))
@@ -64,8 +66,8 @@ tg_app.add_handler(CommandHandler("quick", lambda u, c: respond(u, quick_sort_st
 tg_app.add_handler(CommandHandler("binary", lambda u, c: respond(u, binary_search_steps([1, 3, 5, 7, 9], 5))))
 tg_app.add_handler(CommandHandler("linear", lambda u, c: respond(u, linear_search_steps([3, 1, 4, 2], 4))))
 
-tg_app.add_handler(CommandHandler("factorial", lambda u, c: respond(u, factorial_trace(4))))
-tg_app.add_handler(CommandHandler("fibonacci", lambda u, c: respond(u, fibonacci_trace(5))))
+tg_app.add_handler(CommandHandler("factorial", lambda u, c: respond(u, factorial_steps(4))))  
+tg_app.add_handler(CommandHandler("fibonacci", lambda u, c: respond(u, fibonacci_steps(5))))  
 
 tg_app.add_handler(CommandHandler("bfs", lambda u, c: respond(u, bfs_steps())))
 tg_app.add_handler(CommandHandler("dfs", lambda u, c: respond(u, dfs_steps())))
@@ -85,11 +87,8 @@ async def telegram_webhook(request: Request):
 
 @app.on_event("startup")
 async def on_startup():
-    # Initialize the application
     await tg_app.initialize()
-    # Set webhook before starting the application
     await tg_app.bot.set_webhook(WEBHOOK_URL)
-    # Start the application
     await tg_app.start()
 
 @app.on_event("shutdown")
