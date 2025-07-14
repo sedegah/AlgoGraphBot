@@ -56,21 +56,25 @@ Traversal:
 """)
 
 tg_app.add_handler(CommandHandler("start", start))
-tg_app.add_handler(CommandHandler("bubble", lambda u, c: respond(u, bubble_sort_visualization([5, 2, 8, 1]))))
-tg_app.add_handler(CommandHandler("selection", lambda u, c: respond(u, selection_sort_visualization([4, 3, 1, 9]))))
-tg_app.add_handler(CommandHandler("insertion", lambda u, c: respond(u, insertion_sort_visualization([9, 1, 5, 2]))))
-tg_app.add_handler(CommandHandler("quick", lambda u, c: respond(u, quick_sort_visualization([5, 1, 3, 9]))))
-tg_app.add_handler(CommandHandler("binary", lambda u, c: respond(u, binary_search_ascii())))
-tg_app.add_handler(CommandHandler("linear", lambda u, c: respond(u, linear_search_ascii())))
+tg_app.add_handler(CommandHandler("bubble", lambda u, c: respond(u, bubble_sort_steps([5, 2, 8, 1]))))
+tg_app.add_handler(CommandHandler("selection", lambda u, c: respond(u, selection_sort_steps([4, 3, 1, 9]))))
+tg_app.add_handler(CommandHandler("insertion", lambda u, c: respond(u, insertion_sort_steps([9, 1, 5, 2]))))
+tg_app.add_handler(CommandHandler("quick", lambda u, c: respond(u, quick_sort_steps([5, 1, 3, 9]))))
+
+tg_app.add_handler(CommandHandler("binary", lambda u, c: respond(u, binary_search_steps([1, 3, 5, 7, 9], 5))))
+tg_app.add_handler(CommandHandler("linear", lambda u, c: respond(u, linear_search_steps([3, 1, 4, 2], 4))))
+
 tg_app.add_handler(CommandHandler("factorial", lambda u, c: respond(u, factorial_trace(4))))
 tg_app.add_handler(CommandHandler("fibonacci", lambda u, c: respond(u, fibonacci_trace(5))))
-tg_app.add_handler(CommandHandler("bfs", lambda u, c: respond(u, bfs_ascii())))
-tg_app.add_handler(CommandHandler("dfs", lambda u, c: respond(u, dfs_ascii())))
-tg_app.add_handler(CommandHandler("tree", lambda u, c: respond(u, tree_ascii())))
-tg_app.add_handler(CommandHandler("graph", lambda u, c: respond(u, graph_ascii())))
-tg_app.add_handler(CommandHandler("hashtable", lambda u, c: respond(u, hashtable_ascii())))
-tg_app.add_handler(CommandHandler("stack", lambda u, c: respond(u, stack_ascii())))
-tg_app.add_handler(CommandHandler("queue", lambda u, c: respond(u, queue_ascii())))
+
+tg_app.add_handler(CommandHandler("bfs", lambda u, c: respond(u, bfs_steps())))
+tg_app.add_handler(CommandHandler("dfs", lambda u, c: respond(u, dfs_steps())))
+tg_app.add_handler(CommandHandler("tree", lambda u, c: respond(u, tree_steps())))
+tg_app.add_handler(CommandHandler("graph", lambda u, c: respond(u, graph_steps())))
+
+tg_app.add_handler(CommandHandler("hashtable", lambda u, c: respond(u, hashtable_steps())))
+tg_app.add_handler(CommandHandler("stack", lambda u, c: respond(u, stack_steps())))
+tg_app.add_handler(CommandHandler("queue", lambda u, c: respond(u, queue_steps())))
 
 @app.post("/webhook")
 async def telegram_webhook(request: Request):
