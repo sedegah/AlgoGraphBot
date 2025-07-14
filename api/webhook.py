@@ -138,7 +138,7 @@ async def on_startup():
 
 @app.get("/")
 async def root():
-    return {"status": "GigaRandoBot is alive!"}
+    return {"status": "AlgoGraphBot is alive!"}
 
 
 @app.on_event("shutdown")
